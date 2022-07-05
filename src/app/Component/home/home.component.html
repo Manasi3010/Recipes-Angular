@@ -1,0 +1,28 @@
+<form appearance="standard">
+  <input
+    matInput
+    class="form-contol mr-sm-2"
+    type="text"
+    name="search"
+    placeholder="serach"
+    [(ngModel)]="title"
+  />
+</form>
+<div class="container">
+  <h1>Recipes</h1>
+  <mat-card
+    class="exmple-card"
+    *ngFor="let data of obs | async | filter: title"
+  >
+    <div class="recipes">
+      <img src="{{ data.image }}" />
+      <mat-card-title>{{ data.title }}</mat-card-title>
+    </div>
+  </mat-card>
+</div>
+<mat-paginator
+  [length]="10"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select Page"
+></mat-paginator>
